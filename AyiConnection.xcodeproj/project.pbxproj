@@ -1,0 +1,333 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4D3310AD1E5ADB3E00DEBEF9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D3310AC1E5ADB3E00DEBEF9 /* main.m */; };
+		4D3310B01E5ADB3E00DEBEF9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D3310AF1E5ADB3E00DEBEF9 /* AppDelegate.m */; };
+		4D3310B31E5ADB3E00DEBEF9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D3310B21E5ADB3E00DEBEF9 /* ViewController.m */; };
+		4D3310B61E5ADB3E00DEBEF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D3310B41E5ADB3E00DEBEF9 /* Main.storyboard */; };
+		4D3310B91E5ADB3E00DEBEF9 /* AyiConnection.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4D3310B71E5ADB3E00DEBEF9 /* AyiConnection.xcdatamodeld */; };
+		4D3310BB1E5ADB3E00DEBEF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D3310BA1E5ADB3E00DEBEF9 /* Assets.xcassets */; };
+		4D3310BE1E5ADB3E00DEBEF9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D3310BC1E5ADB3E00DEBEF9 /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4D3310A81E5ADB3E00DEBEF9 /* AyiConnection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AyiConnection.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D3310AC1E5ADB3E00DEBEF9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4D3310AE1E5ADB3E00DEBEF9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		4D3310AF1E5ADB3E00DEBEF9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		4D3310B11E5ADB3E00DEBEF9 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		4D3310B21E5ADB3E00DEBEF9 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		4D3310B51E5ADB3E00DEBEF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4D3310B81E5ADB3E00DEBEF9 /* AyiConnection.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AyiConnection.xcdatamodel; sourceTree = "<group>"; };
+		4D3310BA1E5ADB3E00DEBEF9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4D3310BD1E5ADB3E00DEBEF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4D3310BF1E5ADB3E00DEBEF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4D3310A51E5ADB3E00DEBEF9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4D33109F1E5ADB3E00DEBEF9 = {
+			isa = PBXGroup;
+			children = (
+				4D3310AA1E5ADB3E00DEBEF9 /* AyiConnection */,
+				4D3310A91E5ADB3E00DEBEF9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4D3310A91E5ADB3E00DEBEF9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4D3310A81E5ADB3E00DEBEF9 /* AyiConnection.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4D3310AA1E5ADB3E00DEBEF9 /* AyiConnection */ = {
+			isa = PBXGroup;
+			children = (
+				4D3310AE1E5ADB3E00DEBEF9 /* AppDelegate.h */,
+				4D3310AF1E5ADB3E00DEBEF9 /* AppDelegate.m */,
+				4D3310B11E5ADB3E00DEBEF9 /* ViewController.h */,
+				4D3310B21E5ADB3E00DEBEF9 /* ViewController.m */,
+				4D3310B41E5ADB3E00DEBEF9 /* Main.storyboard */,
+				4D3310BA1E5ADB3E00DEBEF9 /* Assets.xcassets */,
+				4D3310BC1E5ADB3E00DEBEF9 /* LaunchScreen.storyboard */,
+				4D3310BF1E5ADB3E00DEBEF9 /* Info.plist */,
+				4D3310B71E5ADB3E00DEBEF9 /* AyiConnection.xcdatamodeld */,
+				4D3310AB1E5ADB3E00DEBEF9 /* Supporting Files */,
+			);
+			path = AyiConnection;
+			sourceTree = "<group>";
+		};
+		4D3310AB1E5ADB3E00DEBEF9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4D3310AC1E5ADB3E00DEBEF9 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4D3310A71E5ADB3E00DEBEF9 /* AyiConnection */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4D3310C21E5ADB3E00DEBEF9 /* Build configuration list for PBXNativeTarget "AyiConnection" */;
+			buildPhases = (
+				4D3310A41E5ADB3E00DEBEF9 /* Sources */,
+				4D3310A51E5ADB3E00DEBEF9 /* Frameworks */,
+				4D3310A61E5ADB3E00DEBEF9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AyiConnection;
+			productName = AyiConnection;
+			productReference = 4D3310A81E5ADB3E00DEBEF9 /* AyiConnection.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4D3310A01E5ADB3E00DEBEF9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Mobile LLC";
+				TargetAttributes = {
+					4D3310A71E5ADB3E00DEBEF9 = {
+						CreatedOnToolsVersion = 8.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 4D3310A31E5ADB3E00DEBEF9 /* Build configuration list for PBXProject "AyiConnection" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4D33109F1E5ADB3E00DEBEF9;
+			productRefGroup = 4D3310A91E5ADB3E00DEBEF9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4D3310A71E5ADB3E00DEBEF9 /* AyiConnection */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4D3310A61E5ADB3E00DEBEF9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D3310BE1E5ADB3E00DEBEF9 /* LaunchScreen.storyboard in Resources */,
+				4D3310BB1E5ADB3E00DEBEF9 /* Assets.xcassets in Resources */,
+				4D3310B61E5ADB3E00DEBEF9 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4D3310A41E5ADB3E00DEBEF9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D3310B31E5ADB3E00DEBEF9 /* ViewController.m in Sources */,
+				4D3310B91E5ADB3E00DEBEF9 /* AyiConnection.xcdatamodeld in Sources */,
+				4D3310B01E5ADB3E00DEBEF9 /* AppDelegate.m in Sources */,
+				4D3310AD1E5ADB3E00DEBEF9 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4D3310B41E5ADB3E00DEBEF9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4D3310B51E5ADB3E00DEBEF9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		4D3310BC1E5ADB3E00DEBEF9 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4D3310BD1E5ADB3E00DEBEF9 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4D3310C01E5ADB3E00DEBEF9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4D3310C11E5ADB3E00DEBEF9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4D3310C31E5ADB3E00DEBEF9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = AyiConnection/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.test.AyiConnection;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		4D3310C41E5ADB3E00DEBEF9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = AyiConnection/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.test.AyiConnection;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4D3310A31E5ADB3E00DEBEF9 /* Build configuration list for PBXProject "AyiConnection" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4D3310C01E5ADB3E00DEBEF9 /* Debug */,
+				4D3310C11E5ADB3E00DEBEF9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4D3310C21E5ADB3E00DEBEF9 /* Build configuration list for PBXNativeTarget "AyiConnection" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4D3310C31E5ADB3E00DEBEF9 /* Debug */,
+				4D3310C41E5ADB3E00DEBEF9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4D3310B71E5ADB3E00DEBEF9 /* AyiConnection.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4D3310B81E5ADB3E00DEBEF9 /* AyiConnection.xcdatamodel */,
+			);
+			currentVersion = 4D3310B81E5ADB3E00DEBEF9 /* AyiConnection.xcdatamodel */;
+			path = AyiConnection.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 4D3310A01E5ADB3E00DEBEF9 /* Project object */;
+}
