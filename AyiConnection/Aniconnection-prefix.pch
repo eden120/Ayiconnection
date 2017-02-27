@@ -1,0 +1,26 @@
+//
+//  Aniconnection-prefix.pch
+//  AyiConnection
+//
+//  Created by JCB on 2/24/17.
+//  Copyright © 2017 Mobile LLC. All rights reserved.
+//
+
+#ifndef Aniconnection_prefix_pch
+#define Aniconnection_prefix_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import "BaseViewController.h"
+#import "BaseViewController+RestServicesManagement.h"
+#import "Constant.h"
+#import "AppDelegate.h"
+#import "BasicBody.h"
+#import "LoginData.h"
+#import "ProfileBody.h"
+#import <MBProgressHUD.h>
+
+#import "User+CoreDataClass.h"
+
+#endif /* Aniconnection_prefix_pch */

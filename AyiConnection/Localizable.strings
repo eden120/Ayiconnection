@@ -1,0 +1,29 @@
+/* 
+  Localizable.strings
+  AyiConnection
+
+  Created by JCB on 2/21/17.
+  Copyright © 2017 Mobile LLC. All rights reserved.
+*/
+
+"_ALLOW_NOTIFICATION_" = "Allow Notifications";
+"_ALLOW_NOTIFICATION_MESSAGE_" = "We'll send you notifications nearby care providers or job";
+"_ALLOW_" = "Allow";
+"_DONOT_ALLOW_" = "Don't Allow";
+"_LOGIN_OR_SIGNUP_" = "Please Log In or Sign Up";
+"_LOGIN_OR_SIGNUP_MESSAGE_" = "Please log in or sign up for view detailed information";
+
+"_LOGIN_" = "Log In";
+"_SIGNUP_" = "Sign Up";
+"_CANCEL_" = "Cancel";
+
+"_AUTHO_WORK_MESSAGE_" = "Are you authorized to work in the USA?";
+"_NO_I_NOT_" = "No I am not";
+"_YES_I_AM_" = "Yes I Am";
+
+"_ZIP_IS_EMPTY_" = "Please Enter ZipCode";
+"_OK_" = "Ok";
+
+
+"_SIGNUP_ERROR_" = "SignUp is Failed. Please try again.";
+"_LOGIN_ERROR_" = "Login is Failed. Please try again.";

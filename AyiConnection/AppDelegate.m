@@ -7,6 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <RestKit/RestKit.h>
+#import "RKObjectManager+EntitiesMapping.h"
+
 
 @interface AppDelegate ()
 
@@ -17,9 +21,27 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+
+    [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
+    
+    [self setupRest];
+    
+    [self getAccessToken];
     return YES;
 }
 
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+    
+    BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                                  openURL:url
+                                                        sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+                                                               annotation:options[UIApplicationOpenURLOptionsAnnotationKey]
+                    ];
+    // Add any custom logic here.
+    return handled;
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -40,6 +62,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [FBSDKAppEvents activateApp];
 }
 
 
@@ -49,6 +72,167 @@
     [self saveContext];
 }
 
+// Returns the URL to the application's Documents directory.
+- (NSURL *)applicationDocumentsDirectory
+{
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+- (void)setupRest {
+    
+    NSURL *baseURL = [NSURL URLWithString:@"http://sandbox.ayiconnection.com"];
+    
+    // Set high log level
+    RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
+    RKLogConfigureByName("RestKit/Network", RKLogLevelOff);
+    RKLogConfigureByName("RestKit/CoreData/Cache", RKLogLevelTrace);
+    
+    // Setup MODEL
+    
+    NSURL *modelURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"AyiConnection" ofType:@"momd"]];
+    
+    // NOTE: Due to an iOS bug, the managed object model returned is immutable.
+    NSManagedObjectModel *managedObjectModel = [[[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL] mutableCopy];
+    
+    // Setup STORE
+    
+    RKManagedObjectStore *managedObjectStore = [[RKManagedObjectStore alloc] initWithManagedObjectModel:managedObjectModel];
+    
+    
+    // Initialize the Core Data stack
+    [managedObjectStore createPersistentStoreCoordinator];
+    
+    NSError *error = nil;
+    
+    NSDictionary * dictOption = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:NSSQLiteManualVacuumOption];
+    
+    [managedObjectStore addSQLitePersistentStoreAtPath:[[[self applicationDocumentsDirectory] path] stringByAppendingPathComponent:@"AyiConnection.sqlite"]
+                                fromSeedDatabaseAtPath:nil
+                                     withConfiguration:nil
+                                               options:@{ NSSQLitePragmasOption : @{ @"journal_mode" : @"DELETE" } }
+                                                 error:&error];
+    
+    // error setting up the file for the coredata.
+    if (error)
+    {
+        // trying to remove the existing one, and let Coredata to create new ones.
+        NSLog(@"Whoops, couldn't create store. First attempt: %@", error);
+        
+        // remove the sqlite files
+        [self removeCoreDateFiles];
+        
+        error = nil;
+        
+        // force to dowload the filter info from the database
+        
+        [managedObjectStore addSQLitePersistentStoreAtPath:[[[self applicationDocumentsDirectory] path] stringByAppendingPathComponent:@"AyiConnection.sqlite"]
+                                    fromSeedDatabaseAtPath:nil
+                                         withConfiguration:nil
+                                                   options:@{ NSSQLitePragmasOption : @{ @"journal_mode" : @"DELETE" } }
+                                                     error:&error];
+        
+        if (error)
+        {
+            // error setting up the coredata file.
+            NSLog(@"Whoops, couldn't create store: %@", error);
+            //            initialDB_GoldenSpear.sqlite
+            return;
+        }
+        
+        //        return;
+    }
+    
+    [managedObjectStore createManagedObjectContexts];
+    
+    // Set the default store shared instance
+    [RKManagedObjectStore setDefaultStore:managedObjectStore];
+    
+    // Setup CACHE
+    
+    managedObjectStore.managedObjectCache = [[RKFetchRequestManagedObjectCache alloc] init];
+    //initWithManagedObjectContext:managedObjectStore.persistentStoreManagedObjectContext];
+    
+    // Setup OBJECT MANAGER
+    
+    [RKObjectManager managerWithBaseURL:baseURL];
+    
+    [RKObjectManager sharedManager].managedObjectStore = managedObjectStore;
+    
+    //[[RKObjectManager sharedManager].managedObjectStore.mainQueueManagedObjectContext setRetainsRegisteredObjects:YES];
+    
+    // Setup objects mapping
+    [[RKObjectManager sharedManager] defineMappings];
+}
+
+-(void) removeCoreDateFiles
+{
+    [[RKObjectManager sharedManager].operationQueue cancelAllOperations];
+    
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
+    
+    NSFileManager * fileManager = [NSFileManager defaultManager];
+    
+    NSString * storePath = [[[self applicationDocumentsDirectory] path] stringByAppendingPathComponent:@"AyiConnection.sqlite"];
+    
+    NSLog(@"Deleting: %@", storePath);
+    
+    [fileManager removeItemAtPath:storePath error:NULL];
+    
+    // WE WILL ALWAYS REMOVE -SHM AND -WAL TO AVOID MALFORMATIONS!!!
+    //if (DOWNLOAD_3_FILES)
+    {
+        storePath = [[[self applicationDocumentsDirectory] path] stringByAppendingPathComponent:@"AyiConnection.sqlite-shm"];
+        
+        NSLog(@"Deleting: %@", storePath);
+        
+        [fileManager removeItemAtPath:storePath error:NULL];
+        
+        storePath = [[[self applicationDocumentsDirectory] path] stringByAppendingPathComponent:@"AyiConnection.sqlite-wal"];
+        
+        NSLog(@"Deleting: %@", storePath);
+        
+        [fileManager removeItemAtPath:storePath error:NULL];
+    }
+    
+    [RKObjectManager setSharedManager:nil];
+    
+    [RKManagedObjectStore setDefaultStore:nil];
+    
+}
+
+#pragma mark - Get Access Token
+- (void)getAccessToken {
+    NSString *requestPath = @"/api/access_token";
+    NSArray *failedAnswerErrorMessage;
+    id dataObject;
+    
+    BasicBody *requestBody = [[BasicBody alloc] init];
+    requestBody.grant_type = @"client_credentials";
+    requestBody.client_id = CLIENT_ID;
+    requestBody.client_secret = CLIENT_SECRET;
+    
+    dataObject = requestBody;
+    
+    //Message to show if not succeed
+    failedAnswerErrorMessage = [NSArray arrayWithObjects:NSLocalizedString(@"_ERROR_", nil), NSLocalizedString(@"_NO_CATEGORY_ERROR_MSG_", nil), NSLocalizedString(@"_OK_", nil), nil];
+    
+    [[RKObjectManager sharedManager] postObject:dataObject path:requestPath parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        NSArray *results = [mappingResult array];
+        
+        for (LoginData *login in results) {
+            if ([login isKindOfClass:[LoginData class]]) {
+                _accessToken = login.access_token;
+                
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                [defaults setObject:_accessToken forKey:@"TOKEN"];
+                [defaults synchronize];
+            }
+        }
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        NSLog(@"Fail");
+        RKLogError(@"Load failed with error: %@", error);
+    }];
+}
 
 #pragma mark - Core Data stack
 

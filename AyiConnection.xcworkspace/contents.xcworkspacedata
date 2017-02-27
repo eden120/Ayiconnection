@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:Userable+CoreDataClass.h">
+   </FileRef>
+   <FileRef
+      location = "group:Userable+CoreDataClass.m">
+   </FileRef>
+   <FileRef
+      location = "group:Userable+CoreDataProperties.h">
+   </FileRef>
+   <FileRef
+      location = "group:Userable+CoreDataProperties.m">
+   </FileRef>
+   <FileRef
+      location = "group:User+CoreDataClass.h">
+   </FileRef>
+   <FileRef
+      location = "group:User+CoreDataClass.m">
+   </FileRef>
+   <FileRef
+      location = "group:User+CoreDataProperties.h">
+   </FileRef>
+   <FileRef
+      location = "group:User+CoreDataProperties.m">
+   </FileRef>
+   <FileRef
+      location = "group:AyiConnection.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
+</Workspace>
