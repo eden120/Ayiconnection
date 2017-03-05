@@ -20,5 +20,16 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lblChildIndex;
 @property (weak, nonatomic) IBOutlet UIButton *btnDelete;
+@property (weak, nonatomic) IBOutlet UITextField *txtChildName;
+@property (weak, nonatomic) IBOutlet UITextField *txtAge;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segSex;
+
+@end
+
+@interface ChildObj : NSObject
+
+@property (nonatomic) NSString *childName;
+@property (nonatomic) NSString *childAge;
+@property (nonatomic) BOOL isBoy;
 
 @end

@@ -48,12 +48,12 @@
     switch (sender.tag) {
         case 1:
             NSLog(@"User Type : %@", @"Seek Care");
-            self.userType = Family;
+            appDelegate.userType = Family;
             appDelegate.window.rootViewController = parentLoginNavi;
             break;
         case 2:
             NSLog(@"User Type : %@", @"Look Job");
-            self.userType = CareProvider;
+            appDelegate.userType = CareProvider;
             appDelegate.window.rootViewController = providerLoginNavi;
             break;
         default:

@@ -12,7 +12,6 @@
 @interface LanguageViewController : BaseViewController
 
 @property (weak, nonatomic) IBOutlet UIButton *btnEn;
-@property (weak, nonatomic) IBOutlet UIButton *btnEs;
 @property (weak, nonatomic) IBOutlet UIButton *btnCn;
 
 @end

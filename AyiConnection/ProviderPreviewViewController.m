@@ -13,15 +13,35 @@
 @end
 
 @implementation ProviderPreviewViewController
+@synthesize btnPost;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self setupUI];
+}
+
+- (void)setupUI {
+    
+    btnPost.clipsToBounds = YES;
+    btnPost.layer.cornerRadius = 8;
+    
+    _imgProfile.clipsToBounds = YES;
+    _imgProfile.layer.cornerRadius = _imgProfile.frame.size.height / 2;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Action
+- (IBAction)onTapPostBtn:(id)sender {
+    
+}
+
+- (IBAction)onTapBackBtn:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 /*

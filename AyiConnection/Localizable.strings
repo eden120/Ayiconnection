@@ -5,6 +5,9 @@
   Created by JCB on 2/21/17.
   Copyright © 2017 Mobile LLC. All rights reserved.
 */
+////////////////////////////////
+    ///// Common Screen /////
+////////////////////////////////
 
 "_ALLOW_NOTIFICATION_" = "Allow Notifications";
 "_ALLOW_NOTIFICATION_MESSAGE_" = "We'll send you notifications nearby care providers or job";
@@ -12,6 +15,11 @@
 "_DONOT_ALLOW_" = "Don't Allow";
 "_LOGIN_OR_SIGNUP_" = "Please Log In or Sign Up";
 "_LOGIN_OR_SIGNUP_MESSAGE_" = "Please log in or sign up for view detailed information";
+"_ERROR_" = "Failed";
+
+////////////////////////////////
+    ///// Signup Screen /////
+////////////////////////////////
 
 "_LOGIN_" = "Log In";
 "_SIGNUP_" = "Sign Up";
@@ -24,6 +32,27 @@
 "_ZIP_IS_EMPTY_" = "Please Enter ZipCode";
 "_OK_" = "Ok";
 
-
 "_SIGNUP_ERROR_" = "SignUp is Failed. Please try again.";
 "_LOGIN_ERROR_" = "Login is Failed. Please try again.";
+
+"_FIRST_NAME_MISS_" = "Please input FirstName";
+"_SECOND_NAME_MISS_" = "Please input SecondName";
+"_PREFFERED_NAME_MISS_" = "Please input PrefferedName";
+"_EMAIL_MISS_" = "Please input Email";
+"_PASSWORD_MISS_" = "Please input Password";
+"_CONFIRM_PASSWORD_MISS_" = "Please input Confirm Password";
+"_PASSWORD_NOT_MATCH_" = "Password doesn't match with Confirm Password";
+
+
+
+////////////////////////////////
+///// Profile Setup Screen /////
+////////////////////////////////
+
+
+"_PHONE_VERIFY_" = "Verify Phone via Text";
+"_VERIFY_MESSAGE_" = "Enter verification code";
+"_VERIFY_" = "Verify";
+"_VERIFY_ERROR_" = "Invalid Code";
+
+

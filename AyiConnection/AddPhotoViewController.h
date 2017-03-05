@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddPhotoViewController : UIViewController
+@interface AddPhotoViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
+@property (weak, nonatomic) IBOutlet UIImageView *imgPhoto;
 @property (weak, nonatomic) IBOutlet UIButton *btnAddPhoto;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *addPhotoTopSpace;
 

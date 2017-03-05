@@ -11,5 +11,7 @@
 @interface FamilyAddTitleViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIButton *btnPreview;
 @property (weak, nonatomic) IBOutlet UIButton *btnPost;
+@property (weak, nonatomic) IBOutlet UITextField *txtTitle;
+@property (weak, nonatomic) IBOutlet UITextView *txtComment;
 
 @end

@@ -9,17 +9,22 @@
 #import "SignEmailViewController.h"
 #import "AddPhotoViewController.h"
 
-#define kSpace_IPHONE5  8
-#define kSpace_IPHONE6  58
-
-@interface SignEmailViewController ()
+@interface SignEmailViewController ()<UITextFieldDelegate>
 
 @end
 
-@implementation SignEmailViewController
+@implementation SignEmailViewController {
+    UITextField *currentText;
+}
 @synthesize btnTerms;
 @synthesize btnSignup;
-@synthesize signupTopSpace;
+@synthesize scrollView;
+@synthesize txtFirstName;
+@synthesize txtSecondName;
+@synthesize txtPrefferedName;
+@synthesize txtEmail;
+@synthesize txtPassword;
+@synthesize txtConPassword;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,12 +42,18 @@
     btnSignup.clipsToBounds = YES;
     btnSignup.layer.cornerRadius = 8;
     
-    if (IS_IPHONE_5_OR_LESS) {
-        signupTopSpace.constant = kSpace_IPHONE5;
-    }
-    else {
-        signupTopSpace.constant = kSpace_IPHONE6;
-    }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardDidShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
+    
+    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(Tapped:)];
+    [scrollView addGestureRecognizer:tapGes];
+
+}
+
+- (void)Tapped:(UITapGestureRecognizer*)gesture {
+    [currentText resignFirstResponder];
+    [self.view endEditing:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,13 +61,86 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Keyboard Hide/Show
+- (void)keyboardWillShow:(NSNotification*)aNotification {
+    NSDictionary* info = [aNotification userInfo];
+    
+    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0);
+    scrollView.contentInset = contentInsets;
+    scrollView.scrollIndicatorInsets = contentInsets;
+    
+    // If active text field is hidden by keyboard, scroll it so it's visible
+    // Your application might not need or want this behavior.
+    CGRect aRect = self.view.frame;
+    aRect.size.height -= keyboardSize.height;
+    if (!CGRectContainsPoint(aRect, currentText.frame.origin) ) {
+        CGPoint scrollPoint = CGPointMake(0.0, currentText.frame.origin.y-keyboardSize.height);
+        [scrollView setContentOffset:scrollPoint animated:YES];
+    }
+}
+
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification {
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    scrollView.contentInset = contentInsets;
+    scrollView.scrollIndicatorInsets = contentInsets;
+    
+}
+
+#pragma mark - TextFeild Delegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if ([textField isEqual:txtFirstName]) {
+        [txtSecondName becomeFirstResponder];
+    }
+    else if ([textField isEqual:txtSecondName]) {
+        [txtPrefferedName becomeFirstResponder];
+    }
+    else if ([textField isEqual:txtPrefferedName]) {
+        [txtEmail becomeFirstResponder];
+    }
+    else if ([textField isEqual:txtEmail]) {
+        [txtPassword becomeFirstResponder];
+    }
+    else if ([textField isEqual:txtPassword]) {
+        [txtConPassword becomeFirstResponder];
+    }
+    else if ([textField isEqual:txtConPassword]) {
+        [txtConPassword resignFirstResponder];
+        [self.view endEditing:YES];
+        
+        currentText = nil;
+    }
+    
+    return YES;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    currentText = textField;
+}
+
 #pragma mark - Action
 
 - (IBAction)onTapTermsBtn:(UIButton *)sender {
+    
+    [currentText resignFirstResponder];
+    [self.view endEditing:YES];
+    
     sender.selected = !sender.selected;
 }
 
 - (IBAction)onTapSignupBtn:(id)sender {
+    
+    [currentText resignFirstResponder];
+    [self.view endEditing:YES];
+    
+    [self goProfileSetupPage];
+    
+    return;
+    
+    if (![self isValid]) {
+        return;
+    }
     
     AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     
@@ -66,13 +150,13 @@
     requestBody.client_id = CLIENT_ID;
     requestBody.client_secret = CLIENT_SECRET;
     requestBody.access_token = delegate.accessToken;
-    requestBody.username = @"Tester";
-    requestBody.first_name = @"ABC";
-    requestBody.last_name = @"DEF";
-    requestBody.email = @"test@test.com";
-    requestBody.password = @"123456";
-    requestBody.password_confirmation = @"123456";
-    if (self.userType == Family) {
+    requestBody.username = txtPrefferedName.text;
+    requestBody.first_name = txtFirstName.text;
+    requestBody.last_name = txtSecondName.text;
+    requestBody.email = txtEmail.text;
+    requestBody.password = txtPassword.text;
+    requestBody.password_confirmation = txtConPassword.text;
+    if (delegate.userType == Family) {
         requestBody.type = @"family";
     }
     else {
@@ -88,6 +172,47 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (BOOL)isValid {
+    if ([txtFirstName.text isEqualToString:@""]) {
+        [self showErrorMsg:[NSString stringWithFormat:NSLocalizedString(@"_FIRST_NAME_MISS_", nil)]];
+        
+        return false;
+    }
+    if ([txtSecondName.text isEqualToString:@""]) {
+        [self showErrorMsg:[NSString stringWithFormat:NSLocalizedString(@"_SECOND_NAME_MISS_", nil)]];
+        
+        return false;
+    }
+    if ([txtPrefferedName.text isEqualToString:@""]) {
+        [self showErrorMsg:[NSString stringWithFormat:NSLocalizedString(@"_PREFFERED_NAME_MISS_", nil)]];
+        
+        return false;
+    }
+    if ([txtEmail.text isEqualToString:@""]) {
+        [self showErrorMsg:[NSString stringWithFormat:NSLocalizedString(@"_EMAIL_MISS_", nil)]];
+        
+        return false;
+    }
+    if ([txtPassword.text isEqualToString:@""]) {
+        [self showErrorMsg:[NSString stringWithFormat:NSLocalizedString(@"_PASSWORD_MISS_", nil)]];
+        
+        return false;
+    }
+    if ([txtConPassword.text isEqualToString:@""]) {
+        [self showErrorMsg:[NSString stringWithFormat:NSLocalizedString(@"_CONFIRM_PASSWORD_MISS_", nil)]];
+        
+        return false;
+    }
+    if (![txtPassword.text isEqualToString:txtConPassword.text]) {
+        [self showErrorMsg:[NSString stringWithFormat:NSLocalizedString(@"_PASSWORD_NOT_MATCH_", nil)]];
+        
+        txtConPassword.text = @"";
+        return false;
+    }
+    
+    return true;
+}
+
 
 - (void)showAuthoMessage {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:[NSString stringWithFormat:NSLocalizedString(@"_AUTHO_WORK_MESSAGE_", nil)] preferredStyle:UIAlertControllerStyleAlert];
@@ -98,12 +223,16 @@
         [self.navigationController pushViewController:addPhotoVC animated:YES];
     }];
     
-    UIAlertAction *notAllow = [UIAlertAction actionWithTitle:[NSString stringWithFormat:NSLocalizedString(@"_YES_I_AM_", nil)] style:UIAlertActionStyleDefault handler:nil];
+    UIAlertAction *notAllow = [UIAlertAction actionWithTitle:[NSString stringWithFormat:NSLocalizedString(@"_YES_I_AM_", nil)] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        AddPhotoViewController *addPhotoVC = [self.storyboard instantiateViewControllerWithIdentifier:@"AddPhotoViewController"];
+        
+        [self.navigationController pushViewController:addPhotoVC animated:YES];
+    }];
     
     [alert addAction:allow];
     [alert addAction:notAllow];
     
-    alert.view.tintColor = MAIN_COLOR;
+    alert.view.tintColor = ALERT_COLOR;
     
     [self presentViewController:alert animated:YES completion:nil];
 }
@@ -115,18 +244,18 @@
     
     [alert addAction:ok];
     
-    alert.view.tintColor = MAIN_COLOR;
+    alert.view.tintColor = ALERT_COLOR;
     
     [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)goProfileSetupPage {
-    if (self.userType == CareProvider) {
+    AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    
+    if (delegate.userType == CareProvider) {
         [self showAuthoMessage];
         return;
     }
-    
-    AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     
     UIStoryboard *profileSetupStory = [UIStoryboard storyboardWithName:@"ProfileSetup" bundle:nil];
     
@@ -152,7 +281,8 @@
                 if ([signup isKindOfClass:[LoginData class]]) {
                     
                     delegate.accessToken = signup.access_token;
-                    NSLog(@"User Id : %li", [signup.user_id integerValue]);
+                    NSLog(@"User Id : %d", [signup.user_id integerValue]);
+
                     
                     [self getUserInfo:signup.access_token];
                 }
@@ -165,7 +295,8 @@
                 if ([user isKindOfClass:[User class]]) {
                     NSLog(@"User Name : %@", user.username);
                     delegate.currentUser = user;
-                    [self goProfileSetup:user];
+                    //[self goProfileSetup:user];
+                    [self goProfileSetupPage];
                 }
             }
             

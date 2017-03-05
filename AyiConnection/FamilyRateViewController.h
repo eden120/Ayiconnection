@@ -11,6 +11,12 @@
 @interface FamilyRateViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIButton *btnNext;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *consRowHeight;
+@property (weak, nonatomic) IBOutlet UITextField *txtRate;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segTime;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segRateNego;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segPayFre;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segPayWith;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
 
 @end

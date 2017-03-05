@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="15G1217" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
-    <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="15G1217" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="age" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="bio" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="can_edit" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -10,6 +10,7 @@
         <attribute name="first_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="gender" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="inactive" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="language" optional="YES" attributeType="Transformable" valueTransformerName="" syncable="YES"/>
         <attribute name="last_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="location_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name_string" optional="YES" attributeType="String" syncable="YES"/>
@@ -29,7 +30,7 @@
         <attribute name="whatsapp" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="userable" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Userable" syncable="YES"/>
     </entity>
-    <entity name="Userable" representedClassName="Userable" syncable="YES" codeGenerationType="class">
+    <entity name="Userable" representedClassName="Userable" syncable="YES">
         <attribute name="age_kids" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="availability" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="available_end" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -65,7 +66,7 @@
         <attribute name="will_work_agency" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="User" positionX="-63" positionY="-18" width="128" height="450"/>
+        <element name="User" positionX="-63" positionY="-18" width="128" height="465"/>
         <element name="Userable" positionX="-54" positionY="144" width="128" height="540"/>
     </elements>
 </model>

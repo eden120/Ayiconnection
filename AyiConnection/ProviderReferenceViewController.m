@@ -13,15 +13,31 @@
 @end
 
 @implementation ProviderReferenceViewController
+@synthesize btnNext;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self setupUI];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setupUI {
+    
+    btnNext.layer.borderColor = MAIN_COLOR.CGColor;
+    btnNext.layer.borderWidth = 1.5;
+    btnNext.clipsToBounds = YES;
+    btnNext.layer.cornerRadius = 8;
+    
+}
+
+#pragma mark - Action
+- (IBAction)onTapBackBtn:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 /*

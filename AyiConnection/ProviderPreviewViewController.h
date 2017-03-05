@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ProviderPreviewViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIButton *btnPost;
+@property (weak, nonatomic) IBOutlet UIImageView *imgProfile;
 
 @end

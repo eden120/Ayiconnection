@@ -9,6 +9,9 @@
 #import "ZipSetViewController.h"
 #import "UserTypeViewController.h"
 
+#define kBOTTOM_SPACE_IPHONE5       30
+#define kBOTTOM_SPACE_IPHONE6       110
+
 @interface ZipSetViewController () <UITextFieldDelegate>
 
 @end
@@ -29,6 +32,13 @@
     btnNext.layer.borderColor = MAIN_COLOR.CGColor;
     btnNext.clipsToBounds = YES;
     btnNext.layer.cornerRadius = 5;
+    
+    if (IS_IPHONE_5_OR_LESS) {
+        btnNextBottomSpace.constant = kBOTTOM_SPACE_IPHONE5;
+    }
+    else {
+        btnNextBottomSpace.constant = kBOTTOM_SPACE_IPHONE6;
+    }
     
     bottomSpace = btnNextBottomSpace.constant;
     
@@ -86,12 +96,16 @@
         
         [alert addAction:ok];
         
+        alert.view.tintColor = ALERT_COLOR;
+        
         [self presentViewController:alert animated:YES completion:nil];
         
         return;
     }
     
-    self.zipCode = txtZipCode.text;
+    AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    
+    delegate.zipCode = txtZipCode.text;
     
     UserTypeViewController *userTypeVC = [self.storyboard instantiateViewControllerWithIdentifier:@"UserTypeViewController"];
     
@@ -114,7 +128,7 @@
     [alert addAction:allow];
     [alert addAction:notAllow];
   
-    alert.view.tintColor = MAIN_COLOR;
+    alert.view.tintColor = ALERT_COLOR;
     
     [self presentViewController:alert animated:YES completion:nil];
 }

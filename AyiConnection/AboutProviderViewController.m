@@ -13,10 +13,12 @@
 @end
 
 @implementation AboutProviderViewController
+@synthesize btnNext;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self setupUI];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,6 +26,17 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)setupUI {
+    
+    btnNext.layer.borderColor = MAIN_COLOR.CGColor;
+    btnNext.layer.borderWidth = 1.5;
+    btnNext.clipsToBounds = YES;
+    btnNext.layer.cornerRadius = 8;
+    
+    _imgPhoto.clipsToBounds = YES;
+    _imgPhoto.layer.cornerRadius = _imgPhoto.frame.size.height/2;
+    
+}
 /*
 #pragma mark - Navigation
 

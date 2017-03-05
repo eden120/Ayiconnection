@@ -25,7 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblEndTime;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnNext;
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *consRowHeight;
+@property (weak, nonatomic) IBOutlet UIView *vPicker;
+@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 
 @end

@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LanguageSelectViewController.h"
 
-@interface FamilyPositionDetailViewController : UIViewController
+@interface FamilyPositionDetailViewController : UIViewController <LangaugeProtocol>
+
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segTime;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segLive;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segEngLevel;
@@ -16,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UISwitch *swTransport;
 @property (weak, nonatomic) IBOutlet UISwitch *swDriver;
 @property (weak, nonatomic) IBOutlet UIButton *btnNext;
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *consRowHeight;
+@property (weak, nonatomic) IBOutlet UILabel *lblLanguage;
+@property (nonatomic) NSMutableArray *selectedLangauges;
 
 @end

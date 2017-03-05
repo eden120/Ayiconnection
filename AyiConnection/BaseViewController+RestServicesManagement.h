@@ -11,11 +11,16 @@
 
 typedef enum connectionType
 {
+    GET_TOKEN,
     USER_LOGIN,
     USER_SIGNUP,
     GET_USER_PROFILE,
     UPDATE_USER_PROFILE,
     ERROR,
+    
+    GET_ALL_LANGUAGES,
+    GET_ALL_STATES,
+    GET_ALL_CITY_FOR_STATE,
     
     SEND_SMS
 }

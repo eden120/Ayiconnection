@@ -40,6 +40,7 @@
     vBottom.layer.shadowOffset = CGSizeMake(1, 1);
     vBottom.layer.shadowRadius = 5;
     vBottom.layer.shadowOpacity = 0.5;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,6 +55,9 @@
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CareProviderShortDefaultCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CareProviderShortDefaultCell" forIndexPath:indexPath];
+    
+    cell.imgAvatar.clipsToBounds = YES;
+    cell.imgAvatar.layer.cornerRadius = cell.imgAvatar.frame.size.height / 2;
     
     return cell;
 }
@@ -92,7 +96,7 @@
     [alert addAction:signup];
     [alert addAction:cancel];
     
-    alert.view.tintColor = MAIN_COLOR;
+    alert.view.tintColor = ALERT_COLOR;
     
     [self presentViewController:alert animated:YES completion:nil];
 }

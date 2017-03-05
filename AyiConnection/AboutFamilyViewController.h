@@ -7,18 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LanguageSelectViewController.h"
 
-@interface AboutFamilyViewController : BaseViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface AboutFamilyViewController : BaseViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, LangaugeProtocol>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgPhoto;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UILabel *lblName;
 @property (weak, nonatomic) IBOutlet UITextField *txtPrefferName;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segSex;
-@property (weak, nonatomic) IBOutlet UITextField *txtLanguage;
-@property (weak, nonatomic) IBOutlet UITextField *txtLocation;
+@property (weak, nonatomic) IBOutlet UILabel *lblLanguage;
+@property (weak, nonatomic) IBOutlet UILabel *lblState;
+@property (weak, nonatomic) IBOutlet UILabel *lblCity;
 @property (weak, nonatomic) IBOutlet UITextField *txtPhone;
 @property (weak, nonatomic) IBOutlet UIButton *btnNext;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *consNextTopSpace;
+@property (nonatomic) NSMutableArray *selectedLangauges;
 
 @end

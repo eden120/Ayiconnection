@@ -13,15 +13,33 @@
 @end
 
 @implementation ProviderMoreInfoViewController
+@synthesize btnPost;
+@synthesize btnPreview;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self setupUI];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setupUI {
+    btnPreview.layer.borderColor = MAIN_COLOR.CGColor;
+    btnPreview.layer.borderWidth = 1.5;
+    btnPreview.clipsToBounds = YES;
+    btnPreview.layer.cornerRadius = 8;
+    
+    btnPost.clipsToBounds = YES;
+    btnPost.layer.cornerRadius = 8;
+}
+
+#pragma mark - Action
+- (IBAction)onTapBackBtn:(id)sender {
+    
 }
 
 /*

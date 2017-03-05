@@ -11,7 +11,7 @@
 @interface ProfileBody : NSObject
 
 @property (nonatomic, weak) NSString *access_token;
-@property (nonatomic, weak) NSString *username;
+@property (nonatomic) NSString *username;
 @property (nonatomic, weak) NSString *first_name;
 @property (nonatomic, weak) NSString *last_name;
 @property (nonatomic, weak) NSString *email;
@@ -26,6 +26,7 @@
 @property (nonatomic, weak) NSString *whatsapp;
 @property (nonatomic, weak) NSData *photo;
 @property (nonatomic, weak) NSNumber *profile_completed;
+@property (nonatomic, weak) NSArray *languages;
 
 @property (nonatomic, weak) NSNumber *experience;
 @property (nonatomic, weak) NSNumber *salary;

@@ -12,5 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *btnEnableLocation;
 @property (weak, nonatomic) IBOutlet UIButton *btnNotYet;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *consBottomSpace;
 
 @end

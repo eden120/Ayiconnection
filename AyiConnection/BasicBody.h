@@ -11,23 +11,27 @@
 @interface BasicBody : NSObject
 
 //// Request Body for Get Access Token
-@property (nonatomic, weak) NSString *grant_type;
-@property (nonatomic, weak) NSString *client_id;
-@property (nonatomic, weak) NSString *client_secret;
-@property (nonatomic, weak) NSString *username;
-@property (nonatomic, weak) NSString *first_name;
-@property (nonatomic, weak) NSString *last_name;
-@property (nonatomic, weak) NSString *email;
-@property (nonatomic, weak) NSString *password;
-@property (nonatomic, weak) NSString *password_confirmation;
-@property (nonatomic, weak) NSString *provider;
-@property (nonatomic, weak) NSString *social_token;
-@property (nonatomic, weak) NSString *type;
+@property (nonatomic, strong) NSString *grant_type;
+@property (nonatomic, strong) NSString *client_id;
+@property (nonatomic, strong) NSString *client_secret;
+@property (nonatomic, strong) NSString *username;
+@property (nonatomic, strong) NSString *first_name;
+@property (nonatomic, strong) NSString *last_name;
+@property (nonatomic, strong) NSString *email;
+@property (nonatomic, strong) NSString *password;
+@property (nonatomic, strong) NSString *password_confirmation;
+@property (nonatomic, strong) NSString *provider;
+@property (nonatomic, strong) NSString *social_token;
+@property (nonatomic, strong) NSString *type;
 
-@property (nonatomic, weak) NSString *access_token;
+@property (nonatomic, strong) NSString *access_token;
 
 
-@property (nonatomic, weak) NSString *phoneNumber;
+@property (nonatomic, strong) NSString *phoneNumber;
+
+
+@property (nonatomic, strong) NSString *lang;
+@property (nonatomic, strong) NSString *state_code;
 
 
 @end

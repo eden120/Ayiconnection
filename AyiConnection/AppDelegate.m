@@ -26,7 +26,7 @@
     
     [self setupRest];
     
-    [self getAccessToken];
+   // [self getAccessToken];
     return YES;
 }
 
@@ -84,8 +84,8 @@
     
     // Set high log level
     RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
-    RKLogConfigureByName("RestKit/Network", RKLogLevelOff);
-    RKLogConfigureByName("RestKit/CoreData/Cache", RKLogLevelTrace);
+    RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
+    RKLogConfigureByName("RestKit/CoreData/Cache", RKLogLevelOff);
     
     // Setup MODEL
     
@@ -204,6 +204,7 @@
 - (void)getAccessToken {
     NSString *requestPath = @"/api/access_token";
     NSArray *failedAnswerErrorMessage;
+    
     id dataObject;
     
     BasicBody *requestBody = [[BasicBody alloc] init];
@@ -233,6 +234,7 @@
         RKLogError(@"Load failed with error: %@", error);
     }];
 }
+
 
 #pragma mark - Core Data stack
 

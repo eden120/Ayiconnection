@@ -13,13 +13,20 @@
 
 @end
 
-@implementation FamilyResponsibilityViewController
+@implementation FamilyResponsibilityViewController {
+    NSMutableArray *swArray;
+    NSMutableArray *selectedResponse;
+}
 @synthesize btnNext;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setupUI];
+    
+    swArray = [NSMutableArray arrayWithObjects:@"infant", @"young baby", @"toddler", @"preschooler", @"gradeschooler", @"simple housework", @"laundry", @"prep meal", @"cook meal", @"run errands", @"special needs", nil];
+    
+    selectedResponse = [[NSMutableArray alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,9 +44,27 @@
 #pragma mark - Action
 
 - (IBAction)onChangeSwitch:(UISwitch *)sender {
+    NSString *selectedStr = [swArray objectAtIndex:sender.tag];
+    if (sender.isOn) {
+        [selectedResponse addObject:selectedStr];
+    }
+    else {
+        NSMutableArray *temp = [selectedResponse mutableCopy];
+        
+        for (NSString *str in temp) {
+            if ([str isEqualToString:selectedStr]) {
+                [selectedResponse removeObject:str];
+            }
+        }
+    }
 }
 
 - (IBAction)onTapNextBtn:(id)sender {
+    if ([selectedResponse count] > 0) {
+        AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] init];
+        delegate.selectedResp = [selectedResponse mutableCopy];
+    }
+    
     FamilyChildNumViewController *familyChildNumVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FamilyChildNumViewController"];
     
     [self.navigationController pushViewController:familyChildNumVC animated:YES];

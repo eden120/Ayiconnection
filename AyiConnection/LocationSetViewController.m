@@ -10,6 +10,9 @@
 #import "ZipSetViewController.h"
 #import "UserTypeViewController.h"
 
+#define kBOTTOM_SPACE_IPHONE5       30
+#define kBOTTOM_SPACE_IPHONE6       110
+
 @interface LocationSetViewController ()
 
 @end
@@ -28,6 +31,13 @@
     btnNotYet.layer.borderWidth = 1.5;
     btnNotYet.clipsToBounds = YES;
     btnNotYet.layer.cornerRadius = 5;
+    
+    if (IS_IPHONE_5_OR_LESS) {
+        _consBottomSpace.constant = kBOTTOM_SPACE_IPHONE5;
+    }
+    else {
+        _consBottomSpace.constant = kBOTTOM_SPACE_IPHONE6;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,15 +51,17 @@
 }
 
 - (IBAction)onTapLocationSettingBtn:(UIButton *)sender {
+    AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    
     if (sender.tag == 1) {
-        self.enableLocation = YES;
+        delegate.enableLocation = YES;
         
         ZipSetViewController *zipSetVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ZipSetViewController"];
         
         [self.navigationController pushViewController:zipSetVC animated:YES];
     }
     else {
-        self.enableLocation = NO;
+        delegate.enableLocation = NO;
      
         UserTypeViewController *userTypeVC = [self.storyboard instantiateViewControllerWithIdentifier:@"UserTypeViewController"];
         

@@ -125,6 +125,48 @@
     
     RKResponseDescriptor *providerProfileUpdateResponseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:userProfileMapping method:RKRequestMethodPOST pathPattern:@"/api/user/caregiver/update" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     
+    
+    
+    
+    // Get ALL Languages
+    
+    RKObjectMapping *languageMapping = [RKObjectMapping mappingForClass:[Language class]];
+    
+    [languageMapping addAttributeMappingsFromDictionary:@{
+                                                          @"id" : @"language_id",
+                                                          @"name" : @"name"
+                                                          }];
+    
+    RKResponseDescriptor *languageResponseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:languageMapping method:RKRequestMethodPOST pathPattern:@"/api/auth/languages" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    
+    
+    
+    // Get All States
+    
+    RKObjectMapping *stateMapping = [RKObjectMapping mappingForClass:[State class]];
+    
+    [stateMapping addAttributeMappingsFromDictionary:@{
+                                                       @"code" : @"code",
+                                                       @"name" : @"name"
+                                                       }];
+    
+    RKResponseDescriptor *stateResponseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:stateMapping method:RKRequestMethodPOST pathPattern:@"/api/search/states" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    
+    
+    // Get All City of State
+    
+    RKObjectMapping *cityMapping = [RKObjectMapping mappingForClass:[City class]];
+    
+    [cityMapping addAttributeMappingsFromDictionary:@{
+                                                      @"id" : @"city_id",
+                                                      @"city" : @"city_name",
+                                                      @"state" : @"state",
+                                                      @"zip" : @"zip",
+                                                      @"region_id" : @"region_id"
+                                                      }];
+    
+    RKResponseDescriptor *cityResponseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:cityMapping method:RKRequestMethodPOST pathPattern:@"/api/search/cities" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    
     //// --------------------------------------------------////
     //// ----------------REQUEST ENTITIES MAPPING ---------////
     //// --------------------------------------------------////
@@ -141,8 +183,9 @@
                                                                   @"social_token" : @"social_token",
                                                                   @"type" : @"type",
                                                                   @"access_token" : @"access_token",
-                                                                  @"phone" : @"phoneNumber"
-                                                                  
+                                                                  @"phone" : @"phoneNumber",
+                                                                  @"lang" : @"lang",
+                                                                  @"state_code" : @"state_code"
                                                                   }];
     
     RKRequestDescriptor *basicBodyRequestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:[basicBodyRequestMapping inverseMapping] objectClass:[BasicBody class] rootKeyPath:nil method:RKRequestMethodPOST];
@@ -159,38 +202,39 @@
                                                               @"email" : @"email",
                                                               @"first_name" : @"first_name",
                                                               @"gender" : @"gender",
-                                                              @"inactive" : @"inactive",
+                                                              //@"inactive" : @"inactive",
                                                               @"last_name" : @"last_name",
                                                               @"location" : @"location",
                                                               @"phone" : @"phone",
-                                                              @"photo" : @"photo",
+                                                              //@"photo" : @"photo",
                                                               @"profile_completed" : @"profile_completed",
-                                                              @"profile_photo" : @"profile_photo",
+//                                                              @"profile_photo" : @"profile_photo",
                                                               @"qq" : @"qq",
                                                               @"username" : @"username",
                                                               @"wechat" : @"wechat",
                                                               @"whatsapp" : @"whatsapp",
-                                                              @"usertype" : @"usertype",
-                                                              @"living_status" : @"living_status",
-                                                              @"experience" : @"experience",
-                                                              @"salary_type" : @"salary_type",
-                                                              @"salary" : @"salary",
-                                                              @"availability" : @"availability",
-                                                              @"available_start" : @"available_start",
-                                                              @"available_end" : @"available_end",
-                                                              @"available_friday" : @"available_friday",
-                                                              @"available_monday" : @"available_monday",
-                                                              @"available_saturday" : @"available_saturday",
-                                                              @"available_sunday" : @"available_sunday",
-                                                              @"available_thursday" : @"available_thursday",
-                                                              @"available_tuesday" : @"available_tuesday",
-                                                              @"available_wednesday" : @"available_wednesday",
-                                                              @"has_references" : @"has_references",
-                                                              @"has_transportation" : @"has_transportation",
-                                                              @"will_background" : @"will_background",
-                                                              @"will_relocate" : @"will_relocate",
-                                                              @"is_work_eligible" : @"is_work_eligible",
-                                                              @"will_work_agency" : @"will_work_agency"
+                                                              @"languages" : @"languages"
+//                                                              @"usertype" : @"usertype",
+//                                                              @"living_status" : @"living_status",
+//                                                              @"experience" : @"experience",
+//                                                              @"salary_type" : @"salary_type",
+//                                                              @"salary" : @"salary",
+//                                                              @"availability" : @"availability",
+//                                                              @"available_start" : @"available_start",
+//                                                              @"available_end" : @"available_end",
+//                                                              @"available_friday" : @"available_friday",
+//                                                              @"available_monday" : @"available_monday",
+//                                                              @"available_saturday" : @"available_saturday",
+//                                                              @"available_sunday" : @"available_sunday",
+//                                                              @"available_thursday" : @"available_thursday",
+//                                                              @"available_tuesday" : @"available_tuesday",
+//                                                              @"available_wednesday" : @"available_wednesday",
+//                                                              @"has_references" : @"has_references",
+//                                                              @"has_transportation" : @"has_transportation",
+//                                                              @"will_background" : @"will_background",
+//                                                              @"will_relocate" : @"will_relocate",
+//                                                              @"is_work_eligible" : @"is_work_eligible",
+//                                                              @"will_work_agency" : @"will_work_agency"
                                                               }];
     
     RKRequestDescriptor *userProfileRequestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:[profileUpateMapping inverseMapping] objectClass:[ProfileBody class] rootKeyPath:nil method:RKRequestMethodPOST];
@@ -205,7 +249,10 @@
                                             emailSignupResponseDescriptor,
                                             userProfileResponseDescriptor,
                                             familyProfileUpdateResponseDescriptor,
-                                            providerProfileUpdateResponseDescriptor]];
+                                            providerProfileUpdateResponseDescriptor,
+                                            languageResponseDescriptor,
+                                            stateResponseDescriptor,
+                                            cityResponseDescriptor]];
 }
 
 @end

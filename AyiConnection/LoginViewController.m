@@ -130,6 +130,8 @@
 }
 
 - (void)FBLogin {
+    AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    
     FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
     [login logInWithReadPermissions:@[@"public_profile"] fromViewController:self handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
         if (error) {
@@ -147,7 +149,7 @@
             requestBody.provider = @"facebook";
             requestBody.social_token = result.token.tokenString;
             
-            if (self.userType == Family) {
+            if (delegate.userType == Family) {
                 requestBody.type = @"family";
             }
             else {
@@ -189,14 +191,21 @@
 
 
 - (IBAction)onTapLoginBtn:(id)sender {
-    AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    if ([txtEmail.text isEqualToString:@""]) {
+        [self showErrorMsg:[NSString stringWithFormat:NSLocalizedString(@"_EMAIL_MISS_", nil)]];
+        return;
+    }
+    if ([txtPassword.text isEqualToString:@""]) {
+        [self showErrorMsg:[NSString stringWithFormat:NSLocalizedString(@"_PASSWORD_MISS_", nil)]];
+        return;
+    }
     
     BasicBody *requestBody = [[BasicBody alloc] init];
     requestBody.grant_type = @"password";
     requestBody.client_id = CLIENT_ID;
     requestBody.client_secret = CLIENT_SECRET;
-    requestBody.username = @"tester@mail.com";
-    requestBody.password = @"123456";
+    requestBody.username = txtEmail.text;
+    requestBody.password = txtPassword.text;
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self performRestPost:USER_LOGIN withParamaters:@[requestBody]];
@@ -224,7 +233,7 @@
     
     [alert addAction:ok];
     
-    alert.view.tintColor = MAIN_COLOR;
+    alert.view.tintColor = ALERT_COLOR;
     
     [self presentViewController:alert animated:YES completion:nil];
 }

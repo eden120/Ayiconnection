@@ -10,12 +10,17 @@
 
 @interface FamilyCareTypeViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UISwitch *swNanny;
-@property (weak, nonatomic) IBOutlet UISwitch *swMaternity;
-@property (weak, nonatomic) IBOutlet UILabel *swSitter;
-@property (weak, nonatomic) IBOutlet UILabel *swAtHome;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property (weak, nonatomic) IBOutlet UILabel *topTitle;
 @property (weak, nonatomic) IBOutlet UIButton *btnNext;
+@property (nonatomic) CareType careType;
 
+@end
+
+@interface CareTypeCell : UITableViewCell
+
+@property (weak, nonatomic) IBOutlet UILabel *lblCaretype;
+@property (weak, nonatomic) IBOutlet UISwitch *swCaretype;
 
 @end

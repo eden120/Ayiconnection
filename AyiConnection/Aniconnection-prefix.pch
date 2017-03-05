@@ -19,8 +19,12 @@
 #import "BasicBody.h"
 #import "LoginData.h"
 #import "ProfileBody.h"
+#import "Language.h"
+#import "State.h"
+#import "City.h"
 #import <MBProgressHUD.h>
 
 #import "User+CoreDataClass.h"
+#import "Userable+CoreDataClass.h"
 
 #endif /* Aniconnection_prefix_pch */

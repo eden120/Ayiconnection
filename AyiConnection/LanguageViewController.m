@@ -8,6 +8,7 @@
 
 #import "LanguageViewController.h"
 #import "FeaturesViewController.h"
+#import "Constant.h"
 
 @interface LanguageViewController ()
 
@@ -15,7 +16,6 @@
 
 @implementation LanguageViewController
 @synthesize btnEn;
-@synthesize btnEs;
 @synthesize btnCn;
 
 - (void)viewDidLoad {
@@ -26,11 +26,6 @@
     btnEn.layer.borderWidth = 1.5;
     btnEn.clipsToBounds = YES;
     btnEn.layer.cornerRadius = 5;
-    
-    btnEs.layer.borderColor = MAIN_COLOR.CGColor;
-    btnEs.layer.borderWidth = 1.5;
-    btnEs.clipsToBounds = YES;
-    btnEs.layer.cornerRadius = 5;
     
     btnCn.layer.borderColor = MAIN_COLOR.CGColor;
     btnCn.layer.borderWidth = 1.5;
@@ -46,29 +41,25 @@
 #pragma mark - Action
 
 - (IBAction)onTapLanguageBtn:(UIButton *)sender {
+    AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     
     switch (sender.tag) {
         case 1:
             NSLog(@"Selected Language %@", @"En");
-            self.language = En;
+            delegate.language = En;
             break;
         case 2:
-            NSLog(@"Selected Language %@", @"Es");
-            self.language = Es;
-            break;
-        case 3:
             NSLog(@"Selected Language %@", @"Cn");
-            self.language = Cn;
+            delegate.language = Cn;
             break;
         default:
             break;
     }
     
-    FeaturesViewController *featuresVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FeaturesViewController"];
+    FeaturesViewController *featureVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FeaturesViewController"];
     
-    [self.navigationController pushViewController:featuresVC animated:YES];
+    [self.navigationController pushViewController:featureVC animated:YES];
 }
-
 
 /*
 #pragma mark - Navigation

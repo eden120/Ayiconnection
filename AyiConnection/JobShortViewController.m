@@ -91,7 +91,7 @@
     [alert addAction:signup];
     [alert addAction:cancel];
     
-    alert.view.tintColor = MAIN_COLOR;
+    alert.view.tintColor = ALERT_COLOR;
     
     [self presentViewController:alert animated:YES completion:nil];
 }

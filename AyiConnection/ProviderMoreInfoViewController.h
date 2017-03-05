@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ProviderMoreInfoViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIButton *btnPreview;
+@property (weak, nonatomic) IBOutlet UIButton *btnPost;
 
 @end

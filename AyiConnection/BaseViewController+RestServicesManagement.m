@@ -23,6 +23,30 @@
     NSArray *failedAnswerErrorMessage;
     
     switch (connection) {
+        case GET_TOKEN:
+        {
+            if(!(parameters == nil))
+            {
+                if ([parameters count] == 1)
+                {
+                    
+                    postString = @"/api/access_token";
+                    //Data object to post
+                    dataObject = (BasicBody*)[parameters objectAtIndex:0];
+                    
+                    //Message to show if not succeed
+                    failedAnswerErrorMessage = nil;
+                }
+                else
+                {
+                    NSLog(@"XXXX Incorrect number of parameters to perform request! XXXX");
+                    
+                    
+                    return;
+                }
+            }
+            break;
+        }
         case USER_LOGIN:
         {
             if(!(parameters == nil))
@@ -123,7 +147,7 @@
         {
             if(!(parameters == nil))
             {
-                if ([parameters count] == 2)
+                if ([parameters count] == 3)
                 {
                     NSNumber *user_type = [parameters objectAtIndex:0];
                     if ([user_type integerValue] == 0) {
@@ -134,7 +158,104 @@
                     }
                     
                     //Data object to post
-                    dataObject = (BasicBody*)[parameters objectAtIndex:1];
+                    dataObject = (ProfileBody*)[parameters objectAtIndex:1];
+                    
+                    NSData *imageData = [parameters objectAtIndex:2];
+                    //Message to show if not succeed
+                    failedAnswerErrorMessage = nil;
+                    
+//                    NSMutableURLRequest *request = [[RKObjectManager sharedManager] multipartFormRequestWithObject:dataObject
+//                                                                                                            method:RKRequestMethodPOST
+//                                                                                                              path:postString
+//                                                                                                        parameters:nil
+//                                                                                         constructingBodyWithBlock:^(id<AFRKMultipartFormData> formData) {
+//                                                    [formData appendPartWithFileData:imageData
+//                                                                                name:@"picture"
+//                                                                            fileName:@"image_avatar.jpg"
+//                                                                            mimeType:@"image/jpg"];
+//                                                    }];
+//                    
+//                    RKObjectRequestOperation *operation = [[RKObjectManager sharedManager] objectRequestOperationWithRequest:request
+//                                                                                                                     success:^(RKObjectRequestOperation * operation, RKMappingResult * mappingResult)
+//                                                           {
+//                                                           NSLog(@"Image Upload Scucess");
+//                                                           }
+//                                                                                                                     failure:^(RKObjectRequestOperation * operation, NSError *error)
+//                                                           {
+//                                                           NSLog(@"Error %@", error);
+//                                                           }];
+//                    [[RKObjectManager sharedManager] enqueueObjectRequestOperation:operation];
+//                    
+//                    return;
+                }
+                else
+                {
+                    NSLog(@"XXXX Incorrect number of parameters to perform request! XXXX");
+                    
+                    
+                    return;
+                }
+            }
+            break;
+        }
+        case GET_ALL_LANGUAGES:
+        {
+            if(!(parameters == nil))
+            {
+                if ([parameters count] == 1)
+                {
+                    
+                    postString = @"/api/auth/languages";
+                    //Data object to post
+                    dataObject = (BasicBody*)[parameters objectAtIndex:0];
+                    
+                    //Message to show if not succeed
+                    failedAnswerErrorMessage = nil;
+                }
+                else
+                {
+                    NSLog(@"XXXX Incorrect number of parameters to perform request! XXXX");
+                    
+                    
+                    return;
+                }
+            }
+            break;
+        }
+        case GET_ALL_STATES:
+        {
+            if(!(parameters == nil))
+            {
+                if ([parameters count] == 1)
+                {
+                    
+                    postString = @"/api/search/states";
+                    //Data object to post
+                    dataObject = (BasicBody*)[parameters objectAtIndex:0];
+                    
+                    //Message to show if not succeed
+                    failedAnswerErrorMessage = nil;
+                }
+                else
+                {
+                    NSLog(@"XXXX Incorrect number of parameters to perform request! XXXX");
+                    
+                    
+                    return;
+                }
+            }
+            break;
+        }
+        case GET_ALL_CITY_FOR_STATE:
+        {
+            if(!(parameters == nil))
+            {
+                if ([parameters count] == 1)
+                {
+                    
+                    postString = @"/api/search/cities";
+                    //Data object to post
+                    dataObject = (BasicBody*)[parameters objectAtIndex:0];
                     
                     //Message to show if not succeed
                     failedAnswerErrorMessage = nil;

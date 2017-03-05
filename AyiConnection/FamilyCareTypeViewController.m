@@ -9,7 +9,18 @@
 #import "FamilyCareTypeViewController.h"
 #import "FamilyPositionDetailViewController.h"
 
-@interface FamilyCareTypeViewController ()
+@implementation CareTypeCell
+
+@end
+
+@interface FamilyCareTypeViewController ()<UITableViewDelegate, UITableViewDataSource> {
+    NSMutableArray *childCareArray;
+    NSMutableArray *seniorCareArray;
+    NSMutableArray *homeCareArray;
+    NSMutableArray *tutorArray;
+    
+    NSMutableArray *selectedArray;
+}
 
 @end
 
@@ -19,6 +30,37 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    childCareArray = [NSMutableArray arrayWithObjects:@"Nanny/Babysitter", @"Maternity Care", @"At Home Daycare", nil];
+    seniorCareArray = [NSMutableArray arrayWithObjects:@"Companion Care", @"Personal Care", nil];
+    homeCareArray = [NSMutableArray arrayWithObjects:@"Meal Preperation/Cooking", @"House Cleaning", nil];
+    tutorArray = [NSMutableArray arrayWithObjects:@"Homework Supervision", @"Language Study", nil];
+    
+    NSString *str = @"What Type of %@?";
+    
+    switch (_careType) {
+        case ChildCare:
+            selectedArray = [childCareArray mutableCopy];
+            str = [NSString stringWithFormat:str, @"Child Care"];
+            break;
+        case SeniorCare:
+            selectedArray = [seniorCareArray mutableCopy];
+            str = [NSString stringWithFormat:str, @"Senior Care"];
+            break;
+        case HomeCare:
+            selectedArray = [homeCareArray mutableCopy];
+            str = [NSString stringWithFormat:str, @"Home Care"];
+            break;
+        case Tutor:
+            selectedArray = [tutorArray mutableCopy];
+            str = [NSString stringWithFormat:str, @"Tutor"];
+            break;
+        default:
+            break;
+    }
+    
+    self.topTitle.text = str;
+    
     [self setupUI];
 }
 
@@ -49,14 +91,21 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - TableView Delegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [selectedArray count];
 }
-*/
+
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    CareTypeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CareTypeCell" forIndexPath:indexPath];
+    
+    cell.lblCaretype.text = (NSString*)[selectedArray objectAtIndex:indexPath.row];
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+}
 
 @end

@@ -9,7 +9,7 @@
 #import "FamilyAddTitleViewController.h"
 #import "FamilyPreviewViewController.h"
 
-@interface FamilyAddTitleViewController ()
+@interface FamilyAddTitleViewController () <UITextFieldDelegate, UITextViewDelegate>
 
 @end
 
@@ -53,6 +53,27 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark - TexTFeild Delegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    [self.view endEditing:YES];
+    
+    return YES;
+}
+
+#pragma mark - TextView Delegate
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView {
+    [textView resignFirstResponder];
+    [self.view endEditing:YES];
+    return YES;
+}
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [_txtTitle resignFirstResponder];
+    [_txtComment resignFirstResponder];
+    
+    [self.view endEditing:YES];
+}
 
 /*
 #pragma mark - Navigation

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ProviderAvailabilityViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIButton *btnNext;
 
 @end

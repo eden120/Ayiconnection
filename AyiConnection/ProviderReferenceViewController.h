@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ProviderReferenceViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIButton *btnNext;
 
 @end

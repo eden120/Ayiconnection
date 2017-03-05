@@ -9,16 +9,13 @@
 #import "FamilyRateViewController.h"
 #import "FamilyTraitsViewController.h"
 
-#define kROW_HEIGHT_IPHONE5     50
-#define kROW_HEIGHT_IPHONE6     60
-
-@interface FamilyRateViewController ()
+@interface FamilyRateViewController () <UITextFieldDelegate>
 
 @end
 
 @implementation FamilyRateViewController
 @synthesize btnNext;
-@synthesize consRowHeight;
+@synthesize scrollView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,12 +34,55 @@
     btnNext.clipsToBounds = YES;
     btnNext.layer.cornerRadius = 8;
     
-    if (IS_IPHONE_5_OR_LESS) {
-        consRowHeight.constant = kROW_HEIGHT_IPHONE5;
+    _txtRate.delegate = self;
+    
+    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(Tapped:)];
+    [self.scrollView addGestureRecognizer:tapGes];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardDidShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+#pragma mark - Keyboard Hide/Show
+- (void)keyboardWillShow:(NSNotification*)aNotification {
+    NSDictionary* info = [aNotification userInfo];
+    
+    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0);
+    scrollView.contentInset = contentInsets;
+    scrollView.scrollIndicatorInsets = contentInsets;
+    
+    // If active text field is hidden by keyboard, scroll it so it's visible
+    // Your application might not need or want this behavior.
+    CGRect aRect = self.view.frame;
+    aRect.size.height -= keyboardSize.height;
+    if (!CGRectContainsPoint(aRect, _txtRate.frame.origin) ) {
+        CGPoint scrollPoint = CGPointMake(0.0, _txtRate.frame.origin.y-keyboardSize.height);
+        [scrollView setContentOffset:scrollPoint animated:YES];
     }
-    else {
-        consRowHeight.constant = kROW_HEIGHT_IPHONE6;
-    }
+}
+
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification {
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    scrollView.contentInset = contentInsets;
+    scrollView.scrollIndicatorInsets = contentInsets;
+    
+}
+
+
+- (void)Tapped:(UITapGestureRecognizer*)gesture {
+    [_txtRate resignFirstResponder];
+    [self.view endEditing:YES];
+}
+
+#pragma mark - TextFeild Delegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    [self.view endEditing:YES];
+    
+    return YES;
 }
 
 #pragma mark - Action
@@ -52,6 +92,8 @@
 }
 
 - (IBAction)onTapNextBtn:(id)sender {
+    
+    
     FamilyTraitsViewController *familyTraitVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FamilyTraitsViewController"];
     
     [self.navigationController pushViewController:familyTraitVC animated:YES];
